@@ -11,10 +11,11 @@ console.info(workbox);
 console.info(workbox.precaching)
 //precache (预缓存) 静态文件
 workbox.precaching.precacheAndRoute([
-    '/js/app.eec3767d.js',
+    '/js/app.js',
+    '/js/chunk-vendors.a2bfe163.js',
     {
         url:'/index.html',
-        revision:'eec3767d'
+        revision:'a030e145'
     }
 ]);
 //https://blog.csdn.net/yelin042/article/details/79837745
