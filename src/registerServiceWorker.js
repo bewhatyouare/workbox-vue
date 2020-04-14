@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import { register } from 'register-service-worker'
-
+console.error(process.env.BASE_URL);
 if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}sw.js`, {
     ready () {

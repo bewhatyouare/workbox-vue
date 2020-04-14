@@ -9,10 +9,6 @@ else {
 }
 //precache (预缓存) 静态文件
 workbox.precaching.preacheAndRoute([
-    '/js/app.581e2a31.js',
-    {
-        url: '/index.html',
-        revision: '383676'
-    },
+    '/js/app.eec3767d.js'
 ]);
 //https://blog.csdn.net/yelin042/article/details/79837745
