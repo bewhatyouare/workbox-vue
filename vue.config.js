@@ -1,7 +1,7 @@
 module.exports = {
     // 对应webpack的output.publicPath
     publicPath: process.env.NODE_ENV === 'production'
-    ? '../': '/',
+    ? './': '/',
     //对应webpack 的 output.path
     outputDir:'dist',
     //对应webpack 的outputDir
