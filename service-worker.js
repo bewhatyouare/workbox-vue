@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/qqwork/precache-manifest.193025e5111ccb2d1a9538fdf087a8c9.js"
+  "../precache-manifest.e5b30a88fef277672cc3924f62bbadb2.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "learn01"});
