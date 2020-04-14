@@ -14,11 +14,12 @@ console.info(workbox.precaching)
 //precache (预缓存) 静态文件
 workbox.precaching.precacheAndRoute([
     './js/app.a030e145.js',
-    './js/chunk-vendors.a2bfe163.js',
-    {
-        url:'/index.html',
-        revision:'a030e145'
-    }
+    './js/chunk-vendors.a2bfe163.js'
 ]);
+workbox.routing.registerRoute(
+    new RegExp('.*\.(?:js|css)'),
+    workbox.strategies.cacheFirst()
+);
+  
 //https://blog.csdn.net/yelin042/article/details/79837745
 
