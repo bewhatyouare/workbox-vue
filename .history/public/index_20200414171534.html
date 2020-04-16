@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>qqworkbox01</title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+  function subscribeUser(swRegistration) {
+    const applicationServerPublicKey = "BBlY_5OeDkp2zl_Hx9jFxymKyK4kQKZdzoCoe0L5RqpiV2eK0t4zx-d3JPHlISZ0P1nQdSZsxuA5SRlDB0MZWLw";
+    const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+    swRegistration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: applicationServerKey
+    })
+    // 用户同意
+    .then(function(subscription) {
+        console.log('User is subscribed:', JSON.stringify(subscription));
+        jQuery.post("/add-subscription.php", {subscription: JSON.stringify(subscription)}, function(result) {
+            console.log(result);
+        });
+    })
+    // 用户不同意或者生成失败
+    .catch(function(err) {
+        console.log('Failed to subscribe the user: ', err);
+    });
+  }
+    // 可以这么注册 Service Worker
+    if ('serviceWorker' in navigator) {
+        // 为了保证首屏渲染性能，可以在页面 load 完之后注册 Service Worker
+        window.onload = function () {
+            navigator.serviceWorker.register('./sw.js').then(subscription => {
+            console.info(subscription);
+              // 如果用户没有订阅
+            if (!subscription) {
+
+                subscribeUser(reg);
+            } else {
+                console.log("You have subscribed our notification");
+            }       
+          });
+        };
+    }
+  </script>    
+</html>
