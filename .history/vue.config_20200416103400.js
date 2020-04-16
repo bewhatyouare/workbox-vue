@@ -1,6 +1,4 @@
-const path = require('path')
 const webpack = require('webpack')
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 
 module.exports = {
     // 对应webpack的output.publicPath
