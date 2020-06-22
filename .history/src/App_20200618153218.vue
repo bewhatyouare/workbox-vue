@@ -2,11 +2,13 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <router-view></router-view>
-    <button @click="goHome">首页</button>
-    <router-link to="/my" tag="li">
+    <router-link to="/home" tag="div">
+        <span class="menu-text">首页</span>
+    </router-link>
+    <router-link to="/my" tag="div">
         <span class="menu-text">我的</span>
     </router-link>
-    <router-link to="/about" tag="li">
+    <router-link to="/about" >
         <span class="menu-text">关于</span>
     </router-link>
   </div>
@@ -15,12 +17,7 @@
 <script>
 export default {
   name: 'App',
-  components: {},
-  methods:{
-    goHome(){
-      this.$qrouter.push('/home');
-    }
-  }
+  components: {}
 }
 </script>
 
