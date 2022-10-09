@@ -1,1 +1,49 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=favicon.ico><title>learn01</title><link href=css/app.927f4782.css rel=preload as=style><link href=js/app.9fda1c1d.js rel=preload as=script><link href=js/chunk-vendors.173e8e10.js rel=preload as=script><link href=css/app.927f4782.css rel=stylesheet></head><body><noscript><strong>We're sorry but learn01 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=./vendor/vendor.dll.js></script><script src=js/chunk-vendors.173e8e10.js></script><script src=js/app.9fda1c1d.js></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语音识别</title>
+</head>
+<body>
+    <!-- <input x-webkit-speech style="width:80%;"/> -->
+    <button style="width:200px;height:40px;margin-bottom: 30px;" onclick="startSpeak()">点击说话</button>
+    <br/>
+    识别结果：
+    <div id="speakResult" style="color:blue;"></div>
+    <!-- <button style="width:200px;height:40px;" onclick="stopSpeak()">开始识别</button> -->
+</body>
+<script>
+
+    var SpeechRecognition = window.speechRecognition||window.webkitSpeechRecognition;
+    var newRecognition = new SpeechRecognition();//实例化
+    //设置是持续听还是听到声音之后就关闭接收
+    // newRecognition.continuous = true;
+    // console.info(newRecognition)
+    // newRecognition.lang = 'en-US';
+    newRecognition.lang = 'cmn-Hans-CN';
+    newRecognition.interimResults = false;
+    newRecognition.maxAlternatives = 1;
+    newRecognition.onresult = function(event) { 
+        console.info('-----识别结果为：---')
+        console.log(event.results[0][0].transcript);
+        document.getElementById('speakResult').textContent = event.results[0][0].transcript;
+    }
+    //开始说话
+    function startSpeak(){
+        document.getElementById('speakResult').textContent = '';
+        newRecognition.start();
+    }
+    //结束说话
+    function stopSpeak(){
+        console.info('=====')
+        newRecognition.stop();
+
+
+        // var utterThis = new window.SpeechSynthesisUtterance('你好，世界！');
+        // window.speechSynthesis.speak(utterThis);
+    }
+
+</script>
+</html>
